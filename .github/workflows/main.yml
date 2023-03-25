@@ -1,11 +1,11 @@
-name: Build and Deploy
+name: Build
 on:
   push:
     branches:
       - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -22,7 +22,7 @@ jobs:
           message: "Build and deploy"
           files: dist/*
       - name: Push changes
-        uses: lovezsh/reaction-speed@main
+        uses: ad-m/github-push-action@master
         with:
           branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
