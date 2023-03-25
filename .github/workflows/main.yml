@@ -22,7 +22,7 @@ jobs:
           message: "Build and deploy"
           files: dist/*
       - name: Push changes
-        uses: ad-m/github-push-action@main
+        uses: lovezsh/reaction-speed@main
         with:
           branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
