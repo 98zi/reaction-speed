@@ -14,15 +14,14 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
-      - name: Commit built files
-        uses: actions/commit@v1
-        with:
-          author_name: "lovezsh"
-          author_email: "shuxhan@163.com"
-          message: "Build and deploy"
-          files: dist/*
+      - name: Commit changes
+        run: |
+          git config --global user.email "shuxhan@163.com"
+          git config --global user.name "lovezsh"
+          git add .
+          git commit -m "my commit"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
