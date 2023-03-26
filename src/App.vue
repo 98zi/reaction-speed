@@ -3,9 +3,9 @@
 
     <div :class="screenColor" @click="handleClick">{{ welcome }}</div>
     <p v-if="btn">点击屏幕测试你的反应速度！</p>
+    <span class="time" v-if="showTime">你的反应时间: {{ reactionTime }}ms</span>
     <span class="btn" v-if="btn" @click="startGame">点击开始测试</span>
     <span class="btn" v-if="goon" @click="goonGame">再来一次</span>
-    <span class="time" v-if="showTime">你的反应时间: {{ reactionTime }}ms</span>
 
 
   </div>
@@ -36,6 +36,9 @@ export default {
         this.reactionTime = this.endTime - this.startTime;
         this.showTime = true;
         this.goon = true;
+      }else{
+        alert('挑战失败！');
+        window.location.reload();
       }
     },
     startGame() {
@@ -110,6 +113,7 @@ p {
   font-size: 18px;
   transition: all 0.1s linear;
   cursor: pointer;
+  z-index: 999;
 }
 
 .btn:hover {
@@ -117,10 +121,15 @@ p {
 }
 
 .time {
+  width: 100%;
+  height: 100%;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
